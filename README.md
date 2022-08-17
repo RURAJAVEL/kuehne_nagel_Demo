@@ -15,6 +15,6 @@
 1. Payload for application is exported as JSON 
    File name : kuehne_nagel_Demo.postman_collection
 
-# Readme is available at root level and provided for Server & Soap_webservice directroy 
+# Readme is available at root level and provided for Server & Soap_webservice directory
 
 
