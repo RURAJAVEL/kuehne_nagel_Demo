@@ -13,7 +13,6 @@ process.on("uncaughtException", (err) => {
 });
 
 const url = "mongodb+srv://vishal:gAgQIVTrncRD288L@cluster0.vfyry.mongodb.net?retryWrites=true&w=majority";
-//const url = "mongodb://localhost:27017"
 async function init(){
 try{
     const mongoclintInstance = await MongoClient.connect(url, {useNewUrlParser: true});

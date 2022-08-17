@@ -1,0 +1,71 @@
+{
+	"variables": [],
+	"info": {
+		"name": "kuehne_nagel_Demo",
+		"_postman_id": "f92e45b6-bc52-09fc-cf30-a30330570e76",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "FindObject",
+			"request": {
+				"url": "localhost:5001/api/demoApp/findObject",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\":12,\"code\":\"025\",\"name\":\"test\"},{\"id\":13,\"code\":\"026\",\"name\":\"testExam\"},{\"id\":null,\"code\":\"016\",\"name\":\"testResult\"}]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreateObject",
+			"request": {
+				"url": "localhost:5001/api/demoApp/createObject",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 12345,\r\n        \"code\": \"006\",\r\n        \"name\": \"testResult006\"\r\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "FindObjectFromDb",
+			"request": {
+				"url": "localhost:5001/api/demoApp/findObjectFromDb",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": null,\r\n        \"code\": \"016\",\r\n        \"name\": \"testResult\"\r\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
