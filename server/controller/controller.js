@@ -1,3 +1,6 @@
+var soap = require('soap');
+var url = 'http://localhost:8000/wsdl?wsdl';
+
 const findObject = async (req, res)=>{
     try{
         let inputArray = req.body;
@@ -15,6 +18,16 @@ const findObjectFromDb = async (req, res)=>{
         let inputArray = await global.UserDetails.find().toArray();
         let filteredArray = inputArray.filter(data=>(data.id != null && data.code == "025" && data.name == "test"))
         await filterArray(filteredArray);
+        soap.createClient(url, function (err, client) {
+            if (err){
+              throw err;
+            }
+            client.MessageSplitter(filteredArray, function (err, res) {
+              if (err)
+                throw err;
+              console.log("Error calling soap webservice"); 
+            });
+          });
         res.status(200).json({filteredArray});
     }catch(error){
         console.log("error in find object ", error);
@@ -42,6 +55,8 @@ const createObject = async(req, res)=>{
         console.log("error in createObject ", error);
     }
 }
+
+
 
 
 module.exports = {findObject, createObject, findObjectFromDb}
