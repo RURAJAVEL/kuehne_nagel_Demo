@@ -1,9 +1,10 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-
-import {findObject, createObject, findObjectFromDb} from './controller/controller.js';
-import mongodb from 'mongodb';
+const  express = require('express');
+const bodyParser = require('body-parser');
+const {findObject, createObject, findObjectFromDb} = require('./controller/controller.js');
+const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
+var path = require("path");
+var dir = path.join(__dirname,"./public");
 
 process.on("uncaughtException", (err) => {
   console.log("UNCAUGHT EXCEPTION, APP SHUTTING NOW!!");
@@ -19,18 +20,17 @@ try{
     console.log("DB connected successfully");
     global.UserDetails = mongoclintInstance.db("testDB").collection("user_details");
   
-    let PORT = process.env.PORT || 5000;
+    let PORT = process.env.PORT || 5001;
+    
+    
+    const  apiRoutes = require('./route/routes.js');
     const app = express();
+    app.use(express.urlencoded({ extended: true}));
+    app.use(express.json({limit: '50mb'}));
+    
 
-    app.use(bodyParser.json({limit: '50mb'}));
-    app.get('/',(req,res) => {
-        res.send('GeeksforGeeks');
-    })
-
-    app.post('/createObject', createObject)
-
-    app.post('/findObject', findObject);
-    app.get('/findObjectFromDb', findObjectFromDb)
+    app.use("/api", apiRoutes(app));
+    app.use(express.static(dir));
 
     app.listen(PORT,() => {
         console.log(`Running on PORT ${PORT}`);

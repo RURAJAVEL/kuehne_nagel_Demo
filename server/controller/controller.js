@@ -44,4 +44,4 @@ const createObject = async(req, res)=>{
 }
 
 
-export {findObject, createObject, findObjectFromDb}
+module.exports = {findObject, createObject, findObjectFromDb}

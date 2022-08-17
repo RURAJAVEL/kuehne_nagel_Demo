@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demopods
+spec:
+  selector:
+    matchLabels:
+      run: demopods
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: demopods
+    spec:
+      containers:
+      - name: demo-app-eks
+        image: 
+        env:
+        - name: NODE_ENV
+          value: "Production"  
+        ports:
+        - name: http
+          containerPort: 3000
+        
+        
